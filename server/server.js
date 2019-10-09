@@ -12,20 +12,20 @@ const mqtt = require("mqtt");
 
 class mqtt_sinifi {
     constructor(){
-        this.client = mqtt.connect("mqtt://185.122.200.117", {});
+        this.client = mqtt.connect("mqtt://broker.mqttdashboard.com", {clientId: 23423});
     }
 
-    islemler(){
+    islemler(s){
         this.client.on("connect", ()=>{
             console.log("Bağlantı başarılı.");
 
-            this.client.subscribe("456456", err=>{
+            this.client.subscribe("LattLang", err=>{
                 if (err){
                     console.log(err);
-                    console.log("Subscriibe işlemi gerçekleştirilemiyor");
+                    console.log("Subscribe işlemi gerçekleştirilemiyor");
                     return false
                 }else{
-                    this.client.publish("456456", "nbr");
+                    this.client.publish("LattLang", "Hello");
                 }
             });
 
@@ -34,6 +34,16 @@ class mqtt_sinifi {
                 console.log("Topic: "+topic);
                 console.log("Message: "+message.toString());
                 console.log("#############################");
+                if(message.toString().split(",")[2] && message.toString().split(",")[2].length>0){
+                    s.emit("yeniKoordinat", {
+                        id: message.toString().split(",")[2],
+                        latitude: message.toString().split(",")[0],
+                        longitude: message.toString().split(",")[1],
+                        title: "Başlık",
+                        description: "Açıklama"
+                    });
+                }
+
             });
         })
 
@@ -58,6 +68,10 @@ var region = {
 }
 
 io.on("connection", (s)=>{
+
+    var mq = new mqtt_sinifi;
+    mq.islemler(s);
+
     console.log(s.id+" bağlandı");
 
     s.on("disconnect", ()=>{
@@ -75,5 +89,3 @@ io.on("connection", (s)=>{
 
 
 
-var mq = new mqtt_sinifi;
-mq.islemler();
