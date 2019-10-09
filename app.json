@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "Arac Takip",
+    "slug": "arac-takip",
+    "privacy": "public",
+    "sdkVersion": "35.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "2.1.6",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.argerf.aractakip2"
+    },
+    "android": {
+      "package": "com.argerf.aractakip2",
+      "permissions": [
+        "INTERNET"
+      ],
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDIKiuTmH-oKaFLdtcoPg8NGo7QtNIXwWE"
+        }
+      }
+    },
+    "description": "Araç Takibi için yazılmış uygulama."
+  }
+}
