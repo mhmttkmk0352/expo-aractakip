@@ -155,7 +155,7 @@ MongoClient.connect("mongodb://localhost", {useNewUrlParser: true, useUnifiedTop
                         s.emit("giris", {
                             durum: 1,
                             mesaj: "Giriş Başarılı",
-                            sunucu: result.sunucu
+                            subscribe: result.subscribe
                         })
                     }
                     else{
